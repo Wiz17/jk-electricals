@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Electricals - Professional Electrical Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #33B1E2;
+            white-space: nowrap;
+            animation: typewriter 3s steps(30, end), blink 1s infinite;
+        }
+
+        .hero-slide {
+            animation: zoomIn 8s ease-out infinite;
+        }
+
+        .slide-text {
+            animation: slideUp 1s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        .nav-scrolled {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-on-scroll.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-slider {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        @media (max-width:768px) {
+            .hero-slider{
+                height: 80vh;
+            }            
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4));
+            z-index: 1;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #33B1E2;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-3">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-blue-500 to-green-400 rounded-lg flex items-center justify-center">
+                            <img src="https://lh3.googleusercontent.com/p/AF1QipOkFlxz77S28dtmi3XqfEOeCf_O8VAK4S0l_zDq=s600-k-no"
+                                alt="JK Electricals Logo" class="w-8 h-8 object-cover rounded">
+                        </div>
+                        <div class="text-white font-bold">
+                            <div class="text-xl">
+                                <span class="">JK</span>
+                                <span class=""> Electricals</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-blue-400 transition-colors duration-300">Home</a>
+                    <a href="#services"
+                        class="text-white hover:text-blue-400 transition-colors duration-300">Services</a>
+                    <a href="#about" class="text-white hover:text-blue-400 transition-colors duration-300">About</a>
+                    <a href="#contact" class="text-white hover:text-blue-400 transition-colors duration-300">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden mt-4 space-y-2 hidden">
+                <a href="#home" class="block text-white hover:text-blue-400 py-2">Home</a>
+                <a href="#services" class="block text-white hover:text-blue-400 py-2">Services</a>
+                <a href="#about" class="block text-white hover:text-blue-400 py-2">About</a>
+                <a href="#contact" class="block text-white hover:text-blue-400 py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Slider -->
+    <section id="home" class="hero-slider">
+        <!-- Slide 1 -->
+        <div class="slide active hero-slide"
+            style="background-image: url('https://owlcation.com/.image/t_share/MjAzMzA0NDM1MTc3MjM1NjM4/parts-of-a-power-transformer.jpg')">
+            <div class="slide-content h-full flex items-center justify-center">
+                <div class="text-center text-white max-w-4xl px-4">
+                    <div class="slide-text">
+                        <div class="mb-6">
+                            <div class="inline-block bg-black bg-opacity-70 px-6 py-3 rounded-lg mb-4">
+                                <span class="text-2xl font-bold">JK</span>
+                                <span class="text-2xl font-bold"> Electricals</span>
+                            </div>
+                        </div>
+                        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                            TRANSFORMER<br>
+                            <span class="text-blue-400">CONTRACTS</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl mb-8 opacity-90">
+                            Professional transformer installation, maintenance, and repair services
+                        </p>
+                        <button
+                            class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                            Get Quote Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide hero-slide"
+            style="background-image: url('https://cdn.britannica.com/94/192794-050-3F3F3DDD/panels-electricity-order-sunlight.jpg')">
+            <div class="slide-content h-full flex items-center justify-center">
+                <div class="text-center text-white max-w-4xl px-4">
+                    <div class="slide-text">
+                        <div class="mb-6">
+                            <div class="inline-block bg-black bg-opacity-70 px-6 py-3 rounded-lg mb-4">
+                                <span class="text-2xl font-bold">JK</span>
+                                <span class="text-2xl font-bold"> Electricals</span>
+                            </div>
+                        </div>
+                        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                            SOLAR PANEL<br>
+                            <span class="text-green-400">SOLUTIONS</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl mb-8 opacity-90">
+                            Complete solar panel installation with grid connections and maintenance
+                        </p>
+                        <button
+                            class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                            Go Solar Today
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide hero-slide"
+            style="background-image: url('https://www.ziprecruiter.com/svc/fotomat/public-ziprecruiter/cms/1049771418GovernmentElectrician.jpg')">
+            <div class="slide-content h-full flex items-center justify-center">
+                <div class="text-center text-white max-w-4xl px-4">
+                    <div class="slide-text">
+                        <div class="mb-6">
+                            <div class="inline-block bg-black bg-opacity-70 px-6 py-3 rounded-lg mb-4">
+                                <span class="text-2xl font-bold">JK</span>
+                                <span class="text-2xl font-bold"> Electricals</span>
+                            </div>
+                        </div>
+                        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                            ELECTRICAL<br>
+                            <span class="text-yellow-400">CONTRACTING</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl mb-8 opacity-90">
+                            Complete electrical solutions for residential, commercial & industrial
+                        </p>
+                        <button
+                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                            Start Your Project
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide Indicators -->
+        <div class="slide-indicators">
+            <div class="indicator active" data-slide="0"></div>
+            <div class="indicator" data-slide="1"></div>
+            <div class="indicator" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-800 animate-on-scroll">
+                Our Services
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <div class="relative">
+                        <img src="https://media.assettype.com/TNIE/import/2013/3/13/12/original/KSEB3PTI.jpg"
+                            alt="Transformer Installation" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Contract
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Transformer Contracts</h3>
+                        <p class="text-gray-600 mb-4">
+                            Professional transformer installation, maintenance, and repair contracts for all voltage
+                            requirements and power distribution systems.
+                        </p>
+                        <button
+                            class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-semibold transition-colors duration-300">
+                            Get Quote
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <div class="relative">
+                        <img src="https://cdn.britannica.com/94/192794-050-3F3F3DDD/panels-electricity-order-sunlight.jpg"
+                            alt="Solar Panel Installation" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Contract
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Solar Panel Contracts</h3>
+                        <p class="text-gray-600 mb-4">
+                            Complete solar panel installation contracts including grid connections, inverter setup, and
+                            renewable energy system maintenance.
+                        </p>
+                        <button
+                            class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-semibold transition-colors duration-300">
+                            Get Quote
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <div class="relative">
+                        <img src="https://tiimg.tistatic.com/fp/1/004/432/electric-wire-pole-199.jpg"
+                            alt="Electric Pole Installation" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Contract
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Electric Pole Contracts</h3>
+                        <p class="text-gray-600 mb-4">
+                            Installation and maintenance contracts for electrical poles, power distribution lines, and
+                            telecommunications infrastructure.
+                        </p>
+                        <button
+                            class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-semibold transition-colors duration-300">
+                            Get Quote
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <div class="relative">
+                        <img src="https://www.ziprecruiter.com/svc/fotomat/public-ziprecruiter/cms/1049771418GovernmentElectrician.jpg"
+                            alt="Electrical Wiring Work" class="w-full h-48 object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Contract
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Electrical Wiring Contracts</h3>
+                        <p class="text-gray-600 mb-4">
+                            Complete electrical wiring contracts for residential, commercial, and industrial properties
+                            with certified electricians.
+                        </p>
+                        <button
+                            class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-semibold transition-colors duration-300">
+                            Get Quote
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <div class="relative">
+                        <div
+                            class="w-full h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                            <div class="text-white text-center">
+                                <div class="text-4xl mb-2">💳</div>
+                                <div class="text-lg font-bold">BILL PAYMENT</div>
+                                <div class="text-sm opacity-90">SERVICE</div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute top-4 left-4 bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Service
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Bill Payment Services</h3>
+                        <p class="text-gray-600 mb-4">
+                            Convenient electricity bill payment services with online and offline options for hassle-free
+                            utility management.
+                        </p>
+                        <button
+                            class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-semibold transition-colors duration-300">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <div class="relative">
+                        <div
+                            class="w-full h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                            <div class="text-white text-center">
+                                <div class="text-4xl mb-2">📋</div>
+                                <div class="text-lg font-bold">ELECTRICAL PERMIT</div>
+                                <div class="text-sm opacity-90">APPROVED</div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute top-4 left-4 bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Service
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Electrical Paperwork</h3>
+                        <p class="text-gray-600 mb-4">
+                            Complete assistance with electrical permits, compliance documentation, and regulatory
+                            paperwork for all electrical projects.
+                        </p>
+                        <button
+                            class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-semibold transition-colors duration-300">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-800 animate-on-scroll">
+                About JK Electricals
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                <div class="animate-on-scroll">
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        With years of experience in the electrical industry, JK Electricals has established itself as a
+                        trusted partner for all electrical contracting needs. We specialize in comprehensive electrical
+                        solutions ranging from basic wiring to complex transformer installations.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Our team of certified electricians is committed to delivering safe, reliable, and efficient
+                        electrical services. We handle everything from initial consultation and planning to
+                        installation, maintenance, and administrative support including bill payments and documentation.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-500 mb-2">500+</div>
+                            <div class="text-gray-600">Projects Completed</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-500 mb-2">15+</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-purple-500 mb-2">100%</div>
+                            <div class="text-gray-600">Client Satisfaction</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-yellow-500 mb-2">24/7</div>
+                            <div class="text-gray-600">Emergency Service</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animate-on-scroll">
+                    <img src="https://ebullientinvestments.com/images/electrical-installation.jpg"
+                        alt="Electrical Installation" class="w-full h-auto rounded-lg shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white animate-on-scroll">
+                Get In Touch
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Contact Information -->
+                <div class="space-y-8 animate-on-scroll">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl">📞</div>
+                        <div class="text-white">
+                            <h3 class="text-xl font-bold mb-2">Phone</h3>
+                            <p class="text-gray-300">+91 98765 43210</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl">📧</div>
+                        <div class="text-white">
+                            <h3 class="text-xl font-bold mb-2">Email</h3>
+                            <p class="text-gray-300">info@JKelectricals.com</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl">📍</div>
+                        <div class="text-white">
+                            <h3 class="text-xl font-bold mb-2">Address</h3>
+                            <p class="text-gray-300">
+                                123 Electrical Street, Industrial Area<br>
+                                Nagpur, Maharashtra 440001
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl">🕒</div>
+                        <div class="text-white">
+                            <h3 class="text-xl font-bold mb-2">Business Hours</h3>
+                            <p class="text-gray-300">
+                                Mon - Sat: 9:00 AM - 7:00 PM<br>
+                                Sun: Emergency Services Only
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white rounded-xl p-8 shadow-lg animate-on-scroll">
+                    <form class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Your Name" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Your Email" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Your Phone Number" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <textarea placeholder="Describe your electrical needs..." rows="4" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition-colors duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="h-96">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15203.718630393665!2d74.1702201!3d17.7007828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc23564470a4d3d%3A0xb9811e3c49bf5492!2sJ%20K%20Electricals%20and%20Contractor!5e0!3m2!1sen!2sin!4v1751816424250!5m2!1sen!2sin"
+            class="w-full h-full border-0" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 JK Electricals Services. All rights reserved. | Licensed & Insured Electrical Contractors</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Hero slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Show current slide
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+
+            // Reset and trigger slide text animation
+            const slideText = slides[index].querySelector('.slide-text');
+            if (slideText) {
+                slideText.style.animation = 'none';
+                slideText.offsetHeight; // Trigger reflow
+                slideText.style.animation = 'slideUp 1s ease-out forwards';
+                slideText.style.animationDelay = '0.5s';
+                slideText.style.opacity = '0';
+            }
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance slides every 6 seconds
+        setInterval(nextSlide, 6000);
+
+        // Indicator click handlers
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide(); // Swipe left, go to next slide
+                } else {
+                    prevSlide(); // Swipe right, go to previous slide
+                }
+            }
+        }
+
+        // Initialize first slide animation
+        window.addEventListener('load', () => {
+            showSlide(0);
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(this);
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            const message = this.querySelector('textarea').value;
+
+            // Show success message (you can replace this with actual form submission)
+            alert('Thank you for your message! We will contact you soon.');
+
+            // Reset form
+            this.reset();
+        });
+
+        // Service card hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function () {
+            document.body.classList.add('loaded');
+        });
+
+        // Parallax effect for hero section - FIXED
+        window.addEventListener('scroll', function () {
+            const scrolled = window.pageYOffset;
+            const activeSlide = document.querySelector('.hero-slide.active');
+            
+            // Only apply parallax to the currently active slide
+            if (activeSlide) {
+                const speed = 0.5;
+                const currentTransform = activeSlide.style.transform;
+                
+                // Preserve any existing transforms and add parallax
+                if (currentTransform && !currentTransform.includes('translateY')) {
+                    activeSlide.style.transform = `${currentTransform} translateY(${scrolled * speed}px)`;
+                } else if (!currentTransform.includes('translateY')) {
+                    activeSlide.style.transform = `translateY(${scrolled * speed}px)`;
+                }
+            }
+        });
+
+        // Add intersection observer for counting animation
+        const countingElements = document.querySelectorAll('.text-3xl.font-bold');
+
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const finalValue = target.textContent.replace(/\D/g, ''); // Extract numbers
+                    const suffix = target.textContent.replace(/\d/g, ''); // Extract non-numbers
+
+                    if (finalValue) {
+                        animateCount(target, 0, parseInt(finalValue), suffix, 2000);
+                    }
+
+                    countObserver.unobserve(target);
+                }
+            });
+        }, { threshold: 1 });
+
+        countingElements.forEach(el => {
+            countObserver.observe(el);
+        });
+
+        function animateCount(element, start, end, suffix, duration) {
+            const startTime = performance.now();
+
+            function updateCount(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function for smooth animation
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (end - start) * easeOut);
+
+                element.textContent = current + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCount);
+                }
+            }
+
+            requestAnimationFrame(updateCount);
+        }
+
+        // Add click handlers for service buttons
+        document.querySelectorAll('.service-card button').forEach(button => {
+            button.addEventListener('click', function () {
+                const card = this.closest('.service-card');
+                const title = card.querySelector('h3').textContent;
+
+                // Scroll to contact section
+                document.getElementById('contact').scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Pre-fill the message textarea
+                setTimeout(() => {
+                    const textarea = document.querySelector('textarea');
+                    textarea.value = `Hi, I'm interested in your ${title} service. Please provide me with more details and a quote.`;
+                    textarea.focus();
+                }, 1000);
+            });
+        });
+
+        // Add typing effect for hero text
+        function typeWriter(element, text, delay = 100) {
+            let i = 0;
+            element.textContent = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, delay);
+                }
+            }
+
+            type();
+        }
+
+        // Enhanced scroll reveal with stagger effect
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('show');
+                    }, index * 200); // Stagger by 200ms
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Apply stagger effect to service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            staggerObserver.observe(card);
+        });
+    </script>
+</body>
+
+</html>
