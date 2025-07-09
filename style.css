@@ -1,0 +1,518 @@
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid #33B1E2;
+    white-space: nowrap;
+    animation: typewriter 3s steps(30, end), blink 1s infinite;
+}
+
+.hero-slide {
+    animation: zoomIn 8s ease-out infinite;
+}
+
+.slide-text {
+    animation: slideUp 1s ease-out forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
+.nav-scrolled {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-slider {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+@media (max-width:768px) {
+    .hero-slider {
+        height: 80vh;
+    }
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background: linear-gradient(180deg, rgba(255, 255, 255, 0.689), rgba(114, 114, 114, 0.607)); */
+    z-index: 1;
+}
+
+.slide-content {
+    position: relative;
+    z-index: 2;
+}
+
+.slide-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: #33B1E2;
+    transform: scale(1.2);
+}
+
+
+/* Slide Animations */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+.slide-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animation-delay-200 {
+    animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+    animation-delay: 400ms;
+}
+
+.animation-delay-600 {
+    animation-delay: 600ms;
+}
+
+.animation-delay-800 {
+    animation-delay: 800ms;
+}
+
+.animation-delay-1000 {
+    animation-delay: 1000ms;
+}
+
+/* Parallax effect for background images */
+.slide.active .absolute.transform {
+    animation: zoomOut 20s ease-out forwards;
+}
+
+@keyframes zoomOut {
+    from {
+        transform: scale(1.1);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+
+/* Navbar scroll effect */
+#navbar.nav-scrolled {
+    backdrop-filter: blur(20px);
+}
+
+#navbar.nav-scrolled>div:first-child {
+    background: rgba(15, 23, 42, 0.95);
+}
+
+#navbar.nav-scrolled .h-20 {
+    height: 4rem;
+    /* Slightly smaller on scroll */
+}
+
+/* Mobile menu animations */
+#mobile-menu-btn.active .menu-line:nth-child(1) {
+    transform: rotate(45deg) translateY(0.5rem);
+}
+
+#mobile-menu-btn.active .menu-line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+#mobile-menu-btn.active .menu-line:nth-child(3) {
+    transform: rotate(-45deg) translateY(-0.5rem);
+}
+
+/* Mobile menu overlay animations */
+#mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#mobile-menu-overlay.active .mobile-nav-link {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+#mobile-menu-overlay.active .mobile-nav-link:nth-child(1) {
+    transition-delay: 100ms;
+}
+
+#mobile-menu-overlay.active .mobile-nav-link:nth-child(2) {
+    transition-delay: 200ms;
+}
+
+#mobile-menu-overlay.active .mobile-nav-link:nth-child(3) {
+    transition-delay: 300ms;
+}
+
+#mobile-menu-overlay.active .mobile-nav-link:nth-child(4) {
+    transition-delay: 400ms;
+}
+
+#mobile-menu-overlay.active .mobile-cta {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 500ms;
+}
+
+#mobile-menu-overlay.active .mobile-social {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 600ms;
+}
+
+/* Active nav link indicator */
+.nav-link.active {
+    color: white;
+}
+
+.nav-link.active .absolute.bottom-0 {
+    width: 100%;
+    left: 0;
+}
+
+
+/* Card hover effects */
+.service-card {
+    transition: all 0.3s ease;
+}
+
+/* Float animation */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+/* Scroll animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger animation for cards */
+.animate-on-scroll:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.animate-on-scroll:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.animate-on-scroll:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.animate-on-scroll:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.animate-on-scroll:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+.animate-on-scroll:nth-child(6) {
+    transition-delay: 0.6s;
+}
+
+
+/* Counter animation */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.counter {
+    animation: countUp 0.6s ease-out forwards;
+}
+
+/* Hover effects for stat cards */
+.group:hover .counter {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Image hover effects */
+img {
+    transition: transform 0.7s ease;
+}
+
+.group:hover img {
+    transform: scale(1.05);
+}
+
+
+/* Animation delay for pulse effect */
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+/* Hover effects for contact cards */
+.group:hover .group-hover\:scale-110 {
+    transform: scale(1.1);
+}
+
+/* Form input focus effects */
+input:focus,
+textarea:focus,
+select:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Smooth transitions for all interactive elements */
+input,
+textarea,
+select,
+button {
+    transition: all 0.3s ease;
+}
+
+/* Gradient text animation on hover */
+.hover\:text-gradient:hover {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Card hover elevation */
+.hover\:shadow-2xl:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Checkbox custom styling */
+input[type="checkbox"] {
+    appearance: none;
+    background-color: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Animate contact cards on scroll */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger animation for contact info items */
+.space-y-6>*:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.space-y-6>*:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.space-y-6>*:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.space-y-6>*:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Floating animation for background elements */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
