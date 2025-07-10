@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="gallery.css" />
 </head>
+
 <body>
     <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500">
         <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-xl transition-all duration-500"></div>
@@ -68,7 +71,7 @@
                         </div>
                     </a>
 
-                    
+
 
                     <a href="#about"
                         class="nav-link group relative px-5 py-2.5 text-slate-300 hover:text-white font-medium transition-all duration-300">
@@ -166,7 +169,6 @@
                 </a>
 
                 <a href="/jk-electricals/gallery.html"
-
                     class="mobile-nav-link block px-4 py-4 text-2xl font-semibold text-white hover:text-blue-400 transition-all duration-300 transform translate-x-[-100%] opacity-0">
                     <span class="flex items-center justify-between">
                         Gallery
@@ -246,7 +248,239 @@
     </div>
 
 
-    <h1 class="text-3xl font-bold text-center mt-40">GALLERY PAGE.</h1>
+    <section class="text-center mb-12 animate-fade-in mt-28">
+        <div class="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 rounded-full px-4 py-2 mb-4">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                </path>
+            </svg>
+            <span class="text-sm font-semibold uppercase tracking-wider">Portfolio</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-4">
+            Our Work Gallery
+        </h1>
+        <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+            Showcasing our electrical installations and project completions
+        </p>
+    </section>
+
+    <!-- Filter Buttons -->
+    <section class="flex flex-wrap justify-center gap-3 mb-10">
+        <button onclick="filterGallery('all')"
+            class="filter-btn active px-6 py-2 rounded-full border-2 border-gray-300 bg-white text-gray-700 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-300 transform hover:scale-105">
+            All Projects
+        </button>
+        <button onclick="filterGallery('solar')"
+            class="filter-btn px-6 py-2 rounded-full border-2 border-gray-300 bg-white text-gray-700 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-300 transform hover:scale-105">
+            Solar Installation
+        </button>
+        <button onclick="filterGallery('residential')"
+            class="filter-btn px-6 py-2 rounded-full border-2 border-gray-300 bg-white text-gray-700 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-300 transform hover:scale-105">
+            Residential
+        </button>
+        <button onclick="filterGallery('commercial')"
+            class="filter-btn px-6 py-2 rounded-full border-2 border-gray-300 bg-white text-gray-700 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-300 transform hover:scale-105">
+            Commercial
+        </button>
+        <button onclick="filterGallery('industrial')"
+            class="filter-btn px-6 py-2 rounded-full border-2 border-gray-300 bg-white text-gray-700 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-300 transform hover:scale-105">
+            Industrial
+        </button>
+    </section>
+
+    <!-- Photo Gallery Grid -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-5 mb-10">
+        <!-- Solar Panel Installation -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up"
+            data-category="solar" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=400&fit=crop"
+                alt="Solar Panel Installation" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Solar Panel Installation</h3>
+                    <p class="text-sm">50KW Solar System - Residential Complex</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rooftop Solar Project -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up animation-delay-100"
+            data-category="solar" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop"
+                alt="Rooftop Solar Project" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Rooftop Solar Project</h3>
+                    <p class="text-sm">Commercial Building Solar Setup</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home Wiring -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up animation-delay-200"
+            data-category="residential" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1565608087341-404b25492fee?w=600&h=400&fit=crop"
+                alt="Complete Home Wiring" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Complete Home Wiring</h3>
+                    <p class="text-sm">3BHK Apartment Electrical Work</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Office Lighting -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up animation-delay-300"
+            data-category="commercial" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop"
+                alt="Office Lighting Setup" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Office Lighting Setup</h3>
+                    <p class="text-sm">LED Lighting for Corporate Office</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Industrial Panel -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up animation-delay-400"
+            data-category="industrial" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=400&fit=crop"
+                alt="Industrial Panel Installation" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Industrial Panel Installation</h3>
+                    <p class="text-sm">Control Panel Setup for Factory</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Smart Home -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up animation-delay-500"
+            data-category="residential" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=600&h=400&fit=crop"
+                alt="Smart Home Automation" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Smart Home Automation</h3>
+                    <p class="text-sm">Complete Home Automation System</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mall Project -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up animation-delay-600"
+            data-category="commercial" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop"
+                alt="Shopping Mall Project" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Shopping Mall Project</h3>
+                    <p class="text-sm">Complete Electrical Infrastructure</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solar Street Lights -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up animation-delay-700"
+            data-category="solar" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop"
+                alt="Solar Street Lighting" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Solar Street Lighting</h3>
+                    <p class="text-sm">Township Solar Street Light Project</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Gallery Items with Unsplash Images -->
+
+        <!-- Transformer Installation -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up animation-delay-100"
+            data-category="industrial" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop"
+                alt="Transformer Installation" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Transformer Installation</h3>
+                    <p class="text-sm">1000KVA Transformer Setup</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Electrical Maintenance -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up animation-delay-200"
+            data-category="commercial" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop"
+                alt="Electrical Maintenance" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Electrical Maintenance</h3>
+                    <p class="text-sm">Regular Maintenance Services</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Power Distribution -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up animation-delay-300"
+            data-category="industrial" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&h=400&fit=crop"
+                alt="Power Distribution" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Power Distribution System</h3>
+                    <p class="text-sm">High Voltage Distribution Network</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emergency Lighting -->
+        <div class="gallery-item group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:scale-105 animate-slide-up animation-delay-400"
+            data-category="commercial" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1565636192398-5b68e0cec1f7?w=600&h=400&fit=crop"
+                alt="Emergency Lighting" class="w-full h-64 object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div
+                    class="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="text-xl font-semibold mb-1">Emergency Lighting System</h3>
+                    <p class="text-sm">Hospital Emergency Power Backup</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox"
+        class="fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex items-center justify-center p-4 animate-fade-in">
+        <span onclick="closeLightbox()"
+            class="absolute top-4 right-4 text-white text-4xl cursor-pointer hover:text-gray-300 transition-colors">&times;</span>
+        <img id="lightbox-img" class="max-w-full max-h-full rounded-lg animate-zoom-in">
+    </div>
 
 
     <footer class="bg-gray-900 text-white py-8">
@@ -256,6 +490,7 @@
     </footer>
 
     <script src="script.js"></script>
-
+    <script src="gallery.js"></script>
 </body>
+
 </html>
